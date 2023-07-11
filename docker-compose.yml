@@ -1,0 +1,24 @@
+version: '3.3'
+services:
+  app:
+    build: .
+    ports:
+      - 8088:8080
+    depends_on:
+      - mongo
+    environment:
+      SPRING_DATA_MONGODB_HOST: mongo
+      SPRING_DATA_MONGODB_PORT: 27017
+      SPRING_DATA_MONGODB_DATABASE: db_evaluacionmongo
+    
+  mongo:
+    image: mongo
+    container_name: evaluacionmongo
+    restart: always
+   
+    ports:
+      - 8089:27017
+    
+
+volumes:
+  mongo-data:
